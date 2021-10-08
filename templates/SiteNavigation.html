@@ -1,0 +1,10 @@
+<div id="">
+  <a href="http://guyyatsu.me"><img src="{{ url_for('static', filename='resources/graphics/banner.jpg') }}"></a>
+  <ul>
+    {% for item in nav.top %}
+    <li class="{{ 'active' if item.is_active else '' }}">
+      <a href="{{ item.url }}">{{ item.label }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
