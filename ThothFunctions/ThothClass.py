@@ -31,9 +31,7 @@ def DrawCard(card, data):
   if data=='picture': ext='jpg'
   elif data=='essay': ext=str(data)
   else: ext='jpg'
-
   CardObject=tarot[card]; cTitle=CardObject['title']; cClass=CardObject['class']
-
   if cClass=='TRUMPS': return str(f"{cClass}/{cTitle}/{cTitle}.{ext}") 
   else:
     cOrder=CardObject['order']
@@ -42,16 +40,15 @@ def DrawCard(card, data):
 
 
 def BuildIndex():
+  """ Constructs a unique html element for ease of routing views."""
   HTML_BLOCK = ['<ul>']
   _hreflist=[]
-
   for card_type in Thoth.types:
-
     for card in Thoth.ATU:
       if tarot[card]['class']==card_type:
         _hreflist.append(f"<li><a href='{{{{ url_for('ATU/{card}') }}}}'>{card}</a></li>")
-
     HTML_BLOCK.append(f"<li>{card_type}</li><li><ul>")
     for href in _hreflist: HTML_BLOCK.append(href)
     HTML_BLOCK.append("</li></ul>")
     _hreflist.clear()
+  HTML_BLOCK.append('</ul>')
