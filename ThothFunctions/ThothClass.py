@@ -18,6 +18,7 @@ from ThothDatabase import tarot
 
 
 class Thoth:
+  types=['TTUMPS', 'COURTS', 'MINORS']
   ATU=list(tarot.keys())
   def RandomCard():
     from random import choice
@@ -46,48 +47,15 @@ def BuildIndex():
   
   The idea here is to render an html block containing all the
   cards organized under their class as an unordered list whose
-  members are references to api routing calls."""
-  _cardlist = []
+  members are referenced as api routing calls."""
+  HTML_BLOCK - ['<ul>']
+  _hreflist=[]
 
-  def ClassifyCard(hierarchy):
-    """ Generates a list of cards based on type; i.e, 'TRUMPS', 'COURTS', or 'MINORS',
-    and then saves it to RAM for the next function to pick up."""
-    _cardlist.clear()
+  for card_type in Thoth.types:
     for card in Thoth.ATU:
-      if tarot[card]['class']==str(hierarchy):
-        _cardlist.append(card)
-
-  def CardLinker(CardClass):
-    """ Calls ClassifyType and formulates an html string for the given card."""
-    ClassifyCard(CardClass)
-    for card in _cardlist:
-      return str("<li><a href='{{ url_for('ATU/" + str(card) + "') }}'>" + str(card) + "</a></li>")
-""" Here's where the bug's at. Need to figure a way to return CardLinker three times
-  as a sub-line of an unordered list. Like so:
-
-<ul>
-  <li>TRUMPS</li>
-  <li>
-    <ul>
-      <li>Card 1</li>
-      <li>Card 2</li>
-    </ul>
-  </li>
-
-  <li>COURTS</li>
-  <li>
-    <ul>
-      <li>Card 3</li>
-      <li>Card 4</li>
-    </ul>
-  </li>
-
-  <li>MINORS</li>
-  <li>
-    <ul>
-      <li>Card 5</li>
-      <li>Card 6</li>
-    </ul>
-  </li>
-</ul>
-"""
+      if tarot[card][card_type]==card_type:
+        _hreflist.append(f"<li><a href='{{{{ url_for('ATU/{card}') }}}}'>{card}</a></li>")
+    HTML_BLOCK.append(f"<li>{card_type}</li><li><ul>")
+    for href in _hreflist: HTML_BLOCK.append(href)
+    HTML_BLOCK.append("</li></ul>")
+    _hreflist.clear()
