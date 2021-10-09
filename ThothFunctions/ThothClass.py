@@ -18,7 +18,7 @@ from ThothDatabase import tarot
 
 
 class Thoth:
-  types=['TTUMPS', 'COURTS', 'MINORS']
+  types=['TRUMPS', 'COURTS', 'MINORS']
   ATU=list(tarot.keys())
   def RandomCard():
     from random import choice
@@ -42,19 +42,15 @@ def DrawCard(card, data):
 
 
 def BuildIndex():
-  """ Creates an unordered list of linked line items
-  referencing a specific cards route in the flask app.
-  
-  The idea here is to render an html block containing all the
-  cards organized under their class as an unordered list whose
-  members are referenced as api routing calls."""
-  HTML_BLOCK - ['<ul>']
+  HTML_BLOCK = ['<ul>']
   _hreflist=[]
 
   for card_type in Thoth.types:
+
     for card in Thoth.ATU:
-      if tarot[card][card_type]==card_type:
+      if tarot[card]['class']==card_type:
         _hreflist.append(f"<li><a href='{{{{ url_for('ATU/{card}') }}}}'>{card}</a></li>")
+
     HTML_BLOCK.append(f"<li>{card_type}</li><li><ul>")
     for href in _hreflist: HTML_BLOCK.append(href)
     HTML_BLOCK.append("</li></ul>")
