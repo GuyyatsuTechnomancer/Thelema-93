@@ -21,8 +21,7 @@ def HomePage():
     "HomeLayout.html",
     PageTitleitle="THOTH",
     WorkingTitle="93/93; 93",
-    description=str("Tarot Online; The Works of Aleister Crowley,"
-      " presented by the student Guyyatsu Hikikomori.")
+    description=str("Tarot Online; by Guyyatsu Hikikomori.")
   )
 
 
