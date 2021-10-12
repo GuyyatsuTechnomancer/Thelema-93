@@ -42,17 +42,16 @@ def DrawCard(card, data):
 def BuildIndex():
   """ Constructs a unique html element for ease of routing views."""
   ElementObject=""
-  _html = ['<ul>']
+  _html = []
   _hreflist=[]
   for card_type in Thoth.types:
     for card in Thoth.ATU:
       if tarot[card]['class']==card_type:
-        _hreflist.append(f"<li><a href='{{{{ url_for('ATU/{card}') }}}}'>{card}</a></li>")
-    _html.append(f"<li>{card_type}</li><li><ul>")
+        _hreflist.append(f"      <li><a href={{{{ url_for('RenderCard', CARD='{card}') }}}}>{card}</a></li>\n")
+    _html.append(f"<ul>\n  <li>{card_type}</li>\n  <li>\n    <ul>\n")
     for href in _hreflist: _html.append(href)
-    _html.append("</li></ul>")
+    _html.append("    </ul>\n  </li>\n</ul>\n\n")
     _hreflist.clear()
-  _html.append('</ul>')
   for item in _html:
     ElementObject+=str(item)
   return ElementObject

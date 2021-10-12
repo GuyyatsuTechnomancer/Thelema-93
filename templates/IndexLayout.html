@@ -1,15 +1,15 @@
 <!doctype html>
 <html>
   <head>
-    <title>{{PageTitle}}</title>
+    <title>{{  PageTitle  }}</title>
 
-    <meta name="description" content={{description}}>
+    <meta name="description" content='{{  description  }}'>
     <link rel="stylesheet" href="">
   </head>
   <body>
     <div id="MainBody" class="center">
       {% include 'SiteNavigation.html' %}
-      {% block IndexPage %}{% endblock %}
+      {{ content | safe }}
     </div>
   </body>
 </html>
