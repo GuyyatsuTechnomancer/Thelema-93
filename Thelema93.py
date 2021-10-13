@@ -5,7 +5,7 @@ import sys
 sys.path.append('./ThothFunctions')
 from ThothClass import *
 
-Thelema93 = Flask(__name__)
+Thelema93 = Flask(__name__, static_url_path='/static')
 nav = Navigation(Thelema93)
 
 nav.Bar('top', [
@@ -18,29 +18,30 @@ nav.Bar('top', [
 @Thelema93.route('/THOTH')
 def HomePage():
   return render_template(
-    "HomeLayout.html",
+    "HomePage.html",
     PageTitleitle="THOTH",
-    WorkingTitle="93/93; 93",
-    description=str("Tarot Online; by Guyyatsu Hikikomori.")
+    description=str("Tarot Online; by Guyyatsu Hikikomori."),
+    PageHeader="93/93; 93",
+    PageContent=TextConverter('static/resources/articles/Thelema93-body')
   )
 
 @Thelema93.route('/ATU')
 def CardIndex():
   return render_template(
-    "IndexLayout.html",
+    "Index.html",
     PageTitle="The ATU",
-    WorkingTitle="The 78 Rays of the Sun",
     description=str('Index page of all the cards of the deck.'),
-    content=render_template_string(BuildIndex())
+    PageHeader="The 78 Rays of the Sun",
+    PageContent=render_template_string(BuildIndex())
   )
 
 @Thelema93.route('/ATU/<string:CARD>')
 def RenderCard(CARD):
   return render_template(
-    "CardLayout.html",
+    "Card.html",
     PageTitle=CARD,
     WorkingTitle=CARD,
     description="A card in the deck",
-    ImagePath=DrawCard(card=CARD,data='picture'),
-    CardEssay=DrawCard(card=CARD,data='essay')
+    ImagePath=url_for('static', filename='content/' + str(DrawCard(card=CARD,data='picture'))),
+    CardEssay=TextConverter(str('static/content/' + DrawCard(card=CARD,data='essay')))
   )

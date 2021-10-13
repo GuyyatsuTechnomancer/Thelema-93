@@ -19,7 +19,9 @@ from ThothDatabase import tarot
 
 class Thoth:
   types=['TRUMPS', 'COURTS', 'MINORS']
+
   ATU=list(tarot.keys())
+
   def RandomCard():
     from random import choice
     return choice(Thoth.ATU)
@@ -55,3 +57,18 @@ def BuildIndex():
   for item in _html:
     ElementObject+=str(item)
   return ElementObject
+
+
+def TextConverter(TextFile):
+  HtmlString=''
+  StringContainer=[]
+  dStart='<p>'
+  dEnd='</p>\n'
+  with open(str(TextFile), 'r') as TextBlock:
+    for line in TextBlock.readlines():
+      StringContainer.append(dStart)
+      StringContainer.append(line)
+      StringContainer.append(dEnd)
+  for StringElement in StringContainer:
+    HtmlString+=StringElement
+  return HtmlString
