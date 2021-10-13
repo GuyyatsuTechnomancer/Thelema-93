@@ -8,12 +8,10 @@ from ThothClass import *
 Thelema93 = Flask(__name__)
 nav = Navigation(Thelema93)
 
-RandomCard=(str(Thoth.RandomCard()))
-
 nav.Bar('top', [
   nav.Item('Home Page', 'HomePage'),
   nav.Item('Card List', 'CardIndex'),
-  nav.Item('Random Card', 'RenderCard', {'CARD': RandomCard})
+  nav.Item('Random Card', 'RenderCard', {'CARD': Thoth.RandomCard()})
 ])
 
 @Thelema93.route('/')
@@ -25,7 +23,6 @@ def HomePage():
     WorkingTitle="93/93; 93",
     description=str("Tarot Online; by Guyyatsu Hikikomori.")
   )
-
 
 @Thelema93.route('/ATU')
 def CardIndex():
