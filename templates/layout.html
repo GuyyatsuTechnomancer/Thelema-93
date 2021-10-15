@@ -3,14 +3,14 @@
   <head>
     <title>{{  PageTitle  }}</title>
     <meta name="description" content='{{  description  }}'>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="{{ url_for('static', filename='resources/guyyatsu.me.css') }}">
   </head>
   <body>
-    <div id="PageHeader" class="center">
+    <div class='spanner'>
       {% include 'SiteNavigation.html' %}
     </div>
-    <div id="PageContent">
-      <h1>{{ PageHeader }}</h1>
+    <div id='BodyArticle'class='article'>
+      <h1 class="title">{{ PageHeader }}</h1>
       {% block content %}{% endblock %}
     </div>
   </body>

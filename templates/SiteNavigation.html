@@ -1,10 +1,15 @@
-      <div id="">
-        <a href="http://guyyatsu.me"><img src="{{ url_for('static', filename='resources/graphics/banner.png') }}"></a>
-        <ul>
-          {% for item in nav.top %}
-          <li class="{{ 'active' if item.is_active else '' }}">
-            <a href="{{ item.url }}">{{ item.label }}</a>
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
+<div>
+  <a class="banner" href="http://guyyatsu.me">
+    <img src="{{ url_for('static', filename='resources/graphics/banner.png') }}">
+  </a>
+</div>
+<br>
+<div class="navbar">
+  <ul>
+    {% for item in nav.top %}
+    <li class="{{ 'active' if item.is_active else 'inactive' }}">
+      <a href="{{ item.url }}">{{ item.label }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>

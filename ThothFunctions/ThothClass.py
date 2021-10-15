@@ -66,9 +66,18 @@ def TextConverter(TextFile):
   dEnd='</p>\n'
   with open(str(TextFile), 'r') as TextBlock:
     for line in TextBlock.readlines():
+      LetterCount = 0
+      FormattedLine = ''
       StringContainer.append(dStart)
-      StringContainer.append(line)
-      StringContainer.append(dEnd)
+      LetterList = [char for char in line]
+      for letter in LetterList:
+        FormattedLine+= letter
+        LetterCount += 1
+        if LetterCount == 94:
+          FormattedLine+= '\n'
+          LetterCount = 0
+      FormattedLine+=dEnd
+      StringContainer.append(FormattedLine)
   for StringElement in StringContainer:
     HtmlString+=StringElement
   return HtmlString

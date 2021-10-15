@@ -1,6 +1,9 @@
 {% extends 'layout.html' %}
 {% block content %}
 <div id='TarotCard'>
-  <img src='{{ ImagePath }}'>
+  <img id="CardImage" src='{{ ImagePath }}'>
+  <div id='CardText'>
+    {{ CardEssay | safe }}
+  </div>
 </div>
 {% endblock %}
