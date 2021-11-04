@@ -11,7 +11,7 @@ nav = Navigation(Thelema93)
 nav.Bar('top', [
   nav.Item('Home Page', 'HomePage'),
   nav.Item('Card List', 'CardIndex'),
-  nav.Item('Random Card', 'RenderCard', {'CARD': Thoth.RandomCard()})
+  nav.Item('Random Card', 'RenderCard')
 ])
 
 @Thelema93.route('/')
@@ -35,8 +35,9 @@ def CardIndex():
     PageContent=render_template_string(BuildIndex())
   )
 
-@Thelema93.route('/ATU/<string:CARD>')
-def RenderCard(CARD):
+@Thelema93.route('/DRAW')
+def RenderCard():
+  CARD=str(Thoth.RandomCard())# Here's the fucker!
   return render_template(
     "Card.html",
     PageTitle=CARD,
