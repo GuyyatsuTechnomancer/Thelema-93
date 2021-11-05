@@ -15,8 +15,12 @@ nav.Bar('top', [
 ])
 
 @Thelema93.route('/')
-@Thelema93.route('/THOTH')
+@Thelema93.route('/TheBookOfThoth')
+@Thelema93.route('/Tarot')
+@Thelema93.route('/Thoth-Tarot')
 def HomePage():
+  """ The initial entrypoint to the whole deck;
+  with a bit of exposition by Aleister Crowley himself."""
   return render_template(
     "HomePage.html",
     PageTitleitle="THOTH",
@@ -26,7 +30,9 @@ def HomePage():
   )
 
 @Thelema93.route('/ATU')
+@Thelema93.route('/KEYS')
 def CardIndex():
+  """ """
   return render_template(
     "Index.html",
     PageTitle="The ATU",
@@ -36,6 +42,7 @@ def CardIndex():
   )
 
 @Thelema93.route('/ATU/<CARD>')
+@Thelema93.route('/KEYS/<CARD>')
 def RenderCard(CARD):
   return render_template(
     "Card.html",
@@ -47,6 +54,10 @@ def RenderCard(CARD):
   )
 
 @Thelema93.route('/DRAW')
+@Thelema93.route('/DrawRandom')
+@Thelema93.route('/RandomCard')
+@Thelema93.route('/RANDOM')
+@Thelema93.route('/random')
 def DrawRandomCard():
   CARD=str(Thoth.RandomCard())# Here's the fucker!
   return render_template(
