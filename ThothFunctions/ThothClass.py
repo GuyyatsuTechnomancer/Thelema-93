@@ -25,8 +25,27 @@ class Thoth:
   def RandomCard():
     from random import choice
     return choice(Thoth.ATU)
+"""
+  from PIL import Image
 
+  def GetColor(IMAGE, ColorElement):
 
+    def rgb2hex(r, g, b, switch):
+      HexCode='#{:02x}{:02x}{:02x}'.format(r, g, b)
+      if switch == 'BACKGROUND':
+        return HexCode
+      elif switch == 'TEXT':
+        r, g, b = (256-r), (256-g), (256-b)
+        return HexCode
+
+    pixel=Image.open(IMAGE).resize((1, 1))# Pixel-ize and initialize 1-liner.
+
+    if pixel.mode in ('RGBA', 'LA') or (pixel.mode == 'P' and 'transparency' in pixel.info):
+      colors = list(pixel.convert('RGBA').getdata())
+
+      for r, g, b, a in pixels: # just ignore the alpha channel
+        return rgb2hex(r, g, b, ColorElement)
+"""
 def DrawCard(card, data):
   """ Returns the url path for a given card's picture or text.
   Accepts a card title, and either 'essay' or 'jpg'."""
