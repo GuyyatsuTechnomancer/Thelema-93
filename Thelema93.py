@@ -68,3 +68,7 @@ def DrawRandomCard():
     ImagePath=url_for('static', filename='content/' + str(DrawCard(card=CARD,data='picture'))),
     CardEssay=TextConverter(str('static/content/' + DrawCard(card=CARD,data='essay')))
   )
+
+
+if __name__ == "__main__":
+  Thelema93.run(host='0.0.0.0')
